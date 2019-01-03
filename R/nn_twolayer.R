@@ -10,7 +10,6 @@
 #' @param Batch The number of batches estimated in the NN.
 #' @keywords neural networks
 #' @export
-#' nn_twolayer()
 
 nn_twolayer <- function(Words = 3000, Text = man_dat2$text[1:2000], Codes = man_dat2$cmp_code2[1:2000], Epochs = 2, Weighting = "count", Seed = 17,Units = 512, Batch = 32, CM = TRUE, Dropout = .5, Valsplit = .1){
   set.seed(Seed)
@@ -79,4 +78,3 @@ nn_twolayer <- function(Words = 3000, Text = man_dat2$text[1:2000], Codes = man_
     return(score)
   }
 }
-?layer_dense
