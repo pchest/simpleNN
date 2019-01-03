@@ -4,9 +4,10 @@
 \alias{nn_twolayer}
 \title{Neural Network with Two Layers}
 \usage{
-nn_twolayer(Words = 3000, Text = man_dat2$text,
-  Codes = man_dat2$cmp_code2, Epochs = 2, Weighting = "count",
-  Seed = 17, Batch = 32)
+nn_twolayer(Words = 3000, Text = man_dat2$text[1:2000],
+  Codes = man_dat2$cmp_code2[1:2000], Epochs = 2,
+  Weighting = "count", Seed = 17, Units = 512, Batch = 32,
+  CM = TRUE, Dropout = 0.5, Valsplit = 0.1)
 }
 \arguments{
 \item{Words}{The number of top words included in document feature matrixes used as training and testing data.}
