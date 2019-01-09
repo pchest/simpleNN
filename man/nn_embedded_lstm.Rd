@@ -4,21 +4,23 @@
 \alias{nn_embedded_lstm}
 \title{Neural Network with a long-term short-term memory and an embedding layer}
 \usage{
-nn_embedded_lstm(Words = 3000, Text = man_dat2$text,
-  Codes = man_dat2$cmp_code2, Epochs = 10,
-  Seed = as.numeric(Sys.time()), Batch = 32, MaxSentencelen = 60,
-  WordEmbedDim = 50, ValSplit = 0.1, CM = TRUE, Model = FALSE)
+nn_embedded_lstm(Text, Codes, Words = 3000, Seed = 17,
+  Train_prop = 0.5, Epochs = 10, Batch = 32, MaxSentencelen = 60,
+  WordEmbedDim = 50, ValSplit = 0.1, Units_lstm = 64,
+  Dropout = 0.2, Recurrent_dropout = 0.2, CM = TRUE, Model = FALSE)
 }
 \arguments{
-\item{Words}{The number of top words included in document feature matrixes used as training and testing data.}
-
 \item{Text}{The text that will be used as training and test data.}
 
 \item{Codes}{The codes that will be used as outcomes to be predicted by the NN model.}
 
-\item{Epochs}{The number of epochs used in the NN model.}
+\item{Words}{The number of top words included in document feature matrixes used as training and testing data.}
 
 \item{Seed}{The seed used in the model. Defaults to 17}
+
+\item{Train_prop}{The proportion of the data used to train the model. The remainder is used as test data.}
+
+\item{Epochs}{The number of epochs used in the NN model.}
 
 \item{Batch}{The number of batches estimated in the NN.}
 
@@ -27,6 +29,12 @@ nn_embedded_lstm(Words = 3000, Text = man_dat2$text,
 \item{WordEmbedDim}{The number of word embedding dimensions to be produced by the LSTM model}
 
 \item{ValSplit}{The validation split of the data used in the training of the LSTM model}
+
+\item{Units_lstm}{The number of network nodes used in the LSTM layer}
+
+\item{Dropout}{A floating variable bound between 0 and 1. It determines the rate at which units are dropped for the linear tranformation of the inputs.}
+
+\item{Recurrent_dropout}{A floating variable bound between 0 and 1. It determines the fraction of the units to drop for the linear transformation of the recurrent neural network layer.}
 
 \item{CM}{A logical variable that indicates whether a confusion matrix will be output from the function}
 

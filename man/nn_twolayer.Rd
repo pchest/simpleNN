@@ -4,25 +4,37 @@
 \alias{nn_twolayer}
 \title{Neural Network with Two Layers}
 \usage{
-nn_twolayer(Words = 3000, Text = man_dat2$text[1:2000],
-  Codes = man_dat2$cmp_code2[1:2000], Epochs = 2,
-  Weighting = "count", Seed = 17, Units = 512, Batch = 32,
-  CM = TRUE, Dropout = 0.5, Valsplit = 0.1)
+nn_twolayer(Text, Codes, Words = 3000, Seed = 17,
+  Weighting = "count", Train_prop = 0.5, Epochs = 2, Units = 512,
+  Batch = 32, Dropout = 0.5, Valsplit = 0.1, CM = TRUE,
+  Model = FALSE)
 }
 \arguments{
-\item{Words}{The number of top words included in document feature matrixes used as training and testing data.}
-
 \item{Text}{The text that will be used as training and test data.}
 
 \item{Codes}{The codes that will be used as outcomes to be predicted by the NN model.}
 
-\item{Epochs}{The number of epochs used in the NN model.}
-
-\item{Weighting}{The type of feature weighting used in the document feature matrix. I.e., count and tfidf.}
+\item{Words}{The number of top words included in document feature matrixes used as training and testing data.}
 
 \item{Seed}{The seed used in the model. Defaults to 17}
 
-\item{Batch}{The number of batches estimated in the NN.}
+\item{Weighting}{The type of feature weighting used in the document feature matrix. I.e., count and tfidf.}
+
+\item{Train_prop}{The proportion of the data used to train the model. The remainder is used as test data.}
+
+\item{Epochs}{The number of epochs used in the NN model.}
+
+\item{Units}{The number of network nodes used in the first layer of the sequential model}
+
+\item{Batch}{The number of batches estimated}
+
+\item{Dropout}{A floating variable bound between 0 and 1. It determines the rate at which units are dropped for the linear tranformation of the inputs.}
+
+\item{CM}{A logical variable that indicates whether a confusion matrix will be output from the function}
+
+\item{Model}{A logical variable that indicates whether the trained model should be included in the output of this function}
+
+\item{ValSplit}{The validation split of the data used in the training of the LSTM model}
 }
 \description{
 This function is a wrapper for a two layered neural network written using the Keras Package. It takes a
