@@ -6,8 +6,8 @@
 \usage{
 nn_twolayer(Text, Codes, Words = 3000, Seed = 17,
   Weighting = "count", Train_prop = 0.5, Epochs = 2, Units = 512,
-  Batch = 32, Dropout = 0.5, Valsplit = 0.1, CM = TRUE,
-  Model = FALSE)
+  Batch = 32, Dropout = 0.5, Valsplit = 0.1, Metric = "accuracy",
+  Loss = "categorical_crossentropy", CM = TRUE, Model = FALSE)
 }
 \arguments{
 \item{Text}{The text that will be used as training and test data.}
@@ -29,6 +29,10 @@ nn_twolayer(Text, Codes, Words = 3000, Seed = 17,
 \item{Batch}{The number of batches estimated}
 
 \item{Dropout}{A floating variable bound between 0 and 1. It determines the rate at which units are dropped for the linear tranformation of the inputs.}
+
+\item{Metric}{Metric used to train algorithm}
+
+\item{Loss}{Metric used to train algorithm}
 
 \item{CM}{A logical variable that indicates whether a confusion matrix will be output from the function}
 

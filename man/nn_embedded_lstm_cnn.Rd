@@ -8,7 +8,8 @@ nn_embedded_lstm_cnn(Text, Codes, Words = 3000, Seed = 17,
   Train_prop = 0.5, Epochs = 10, Batch = 32, MaxSentencelen = 60,
   WordEmbedDim = 50, ValSplit = 0.1, Dropout_layer_1 = 0.2,
   Dropout_layer_2 = 0.2, Dropout_layer_3 = 0.2, Filter = 64,
-  Kernel_size = 5, Pool_size = 4, Units_lstm = 64, CM = TRUE,
+  Kernel_size = 5, Pool_size = 4, Units_lstm = 64,
+  Metric = "accuracy", Loss = "categorical_crossentropy", CM = TRUE,
   Model = FALSE)
 }
 \arguments{
@@ -45,6 +46,10 @@ nn_embedded_lstm_cnn(Text, Codes, Words = 3000, Seed = 17,
 \item{Pool_size}{}
 
 \item{Units_lstm}{The number of network nodes used in the LSTM layer}
+
+\item{Metric}{Metric used to train algorithm}
+
+\item{Loss}{Metric used to train algorithm}
 
 \item{CM}{A logical variable that indicates whether a confusion matrix will be output from the function}
 

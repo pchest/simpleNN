@@ -19,6 +19,8 @@
 #' @param Kernel_size 
 #' @param Pool_size 
 #' @param Units_lstm The number of network nodes used in the LSTM layer
+#' @param Metric Metric used to train algorithm
+#' @param Loss Metric used to train algorithm
 #' @param CM A logical variable that indicates whether a confusion matrix will be output from the function
 #' @param Model A logical variable that indicates whether the trained model should be included in the output of this function
 #' @keywords neural networks, LSTM
@@ -29,7 +31,16 @@ nn_embedded_lstm_cnn<- function(Text, Codes,
                              Epochs = 10, Batch = 32, MaxSentencelen = 60, WordEmbedDim = 50, ValSplit = 0.1, 
                              Dropout_layer_1 = 0.2, Dropout_layer_2 = 0.2, Dropout_layer_3 = 0.2, 
                              Filter = 64, Kernel_size = 5, Pool_size = 4, Units_lstm = 64, 
+                             Metric = "accuracy",Loss = "categorical_crossentropy", 
                              CM = TRUE, Model = FALSE) {
+  
+#  if(Sparse == TRUE) {
+#      loss = "sparse_categorical_accuracy"
+#      metric = "sparse_categorical_crossentropy"
+#  }  else {
+#      loss = "categorical_crossentropy"
+#      metric = "accuracy"
+#  }
   set.seed(Seed)
   train_index <- sample(1:length(Text), size = length(Text) * Train_prop, replace = FALSE)
   Codes2 <- as.numeric(as.factor(Codes))
@@ -59,9 +70,9 @@ nn_embedded_lstm_cnn<- function(Text, Codes,
       layer_dense(units = classes, activation = 'sigmoid')
 
   model %>% compile(
-    loss = 'categorical_crossentropy',
+    loss = Loss,
     optimizer = 'adam',
-    metrics = 'accuracy'
+    metrics = Metric
   )
   
   history <- model %>% fit(

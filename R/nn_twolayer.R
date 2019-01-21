@@ -12,6 +12,8 @@
 #' @param Batch The number of batches estimated
 #' @param Dropout A floating variable bound between 0 and 1. It determines the rate at which units are dropped for the linear tranformation of the inputs.
 #' @param ValSplit The validation split of the data used in the training of the LSTM model
+#' @param Metric Metric used to train algorithm
+#' @param Loss Metric used to train algorithm
 #' @param CM A logical variable that indicates whether a confusion matrix will be output from the function
 #' @param Model A logical variable that indicates whether the trained model should be included in the output of this function
 #' @keywords neural networks
@@ -19,7 +21,8 @@
 
 nn_twolayer <- function(Text, Codes, 
                         Words = 3000, Seed = 17, Weighting = "count", Train_prop = .5, 
-                        Epochs = 2, Units = 512, Batch = 32, Dropout = .5, Valsplit = .1,  
+                        Epochs = 2, Units = 512, Batch = 32, Dropout = .5, Valsplit = .1,
+                        Metric = "accuracy",Loss = "categorical_crossentropy", 
                         CM = TRUE, Model = FALSE){
   set.seed(Seed)
   require(caret)
@@ -63,9 +66,9 @@ nn_twolayer <- function(Text, Codes,
     layer_activation(activation = 'softmax')
   
   model %>% compile(
-    loss = 'categorical_crossentropy',
+    loss = Loss,
     optimizer = 'adam',
-    metrics = c('accuracy')
+    metrics = Metric
   )
   
   history <- model %>% fit(
