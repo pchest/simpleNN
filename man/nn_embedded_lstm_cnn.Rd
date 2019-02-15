@@ -4,13 +4,13 @@
 \alias{nn_embedded_lstm_cnn}
 \title{Neural Network with a long-term short-term memory and an embedding layer}
 \usage{
-nn_embedded_lstm_cnn(Text, Codes, Words = 3000, Seed = 17,
-  Train_prop = 0.5, Epochs = 10, Batch = 32, MaxSentencelen = 60,
-  WordEmbedDim = 50, ValSplit = 0.1, Dropout_layer_1 = 0.2,
-  Dropout_layer_2 = 0.2, Dropout_layer_3 = 0.2, Filter = 64,
-  Kernel_size = 5, Pool_size = 4, Units_lstm = 64,
-  Metric = "accuracy", Loss = "categorical_crossentropy", CM = TRUE,
-  Model = FALSE)
+nn_embedded_lstm_cnn(Text, Codes, Words = 7000, Seed = 17,
+  Train_prop = 0.8, Epochs = 4, Batch = 64, MaxSentencelen = 40,
+  WordEmbedDim = 60, ValSplit = 0.1, Dropout_layer_1 = 0.6,
+  Dropout_layer_2 = 0.3, Dropout_layer_3 = 0.3, Filter = 48,
+  Kernel_size = 5, Pool_size = 4, Units_lstm = 128,
+  Metric = "binary_accuracy", Loss = "binary_crossentropy",
+  CM = TRUE, Model = FALSE)
 }
 \arguments{
 \item{Text}{The text that will be used as training and test data.}

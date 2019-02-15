@@ -4,10 +4,11 @@
 \alias{nn_twolayer}
 \title{Neural Network with Two Layers}
 \usage{
-nn_twolayer(Text, Codes, Words = 3000, Seed = 17,
-  Weighting = "count", Train_prop = 0.5, Epochs = 2, Units = 512,
-  Batch = 32, Dropout = 0.5, Valsplit = 0.1, Metric = "accuracy",
-  Loss = "categorical_crossentropy", CM = TRUE, Model = FALSE)
+nn_twolayer(Text, Codes, Words = 10000, Seed = 17,
+  Weighting = "count", Train_prop = 0.5, Epochs = 3, Units = 512,
+  Batch = 32, Dropout = 0.2, Valsplit = 0.1,
+  Metric = "binary_accuracy", Loss = "binary_crossentropy",
+  CM = TRUE, Model = FALSE)
 }
 \arguments{
 \item{Text}{The text that will be used as training and test data.}
