@@ -20,9 +20,9 @@
 #' @export
 
 nn_twolayer <- function(Text, Codes, 
-                        Words = 3000, Seed = 17, Weighting = "count", Train_prop = .5, 
-                        Epochs = 2, Units = 512, Batch = 32, Dropout = .5, Valsplit = .1,
-                        Metric = "accuracy",Loss = "categorical_crossentropy", 
+                        Words = 10000, Seed = 17, Weighting = "count", Train_prop = .5, 
+                        Epochs = 3, Units = 512, Batch = 32, Dropout = .2, Valsplit = .1,
+                        Metric = "binary_accuracy",Loss = "binary_crossentropy", 
                         CM = TRUE, Model = FALSE){
   set.seed(Seed)
   require(caret)
