@@ -27,7 +27,7 @@
 #' @export
 
 nn_embedded_lstm_cnn<- function(Text, Codes, 
-                             Words = 3000, Seed = 17, Train_prop = 0.8, 
+                             Words = 7000, Seed = 17, Train_prop = 0.8, 
                              Epochs = 4, Batch = 64, MaxSentencelen = 40, WordEmbedDim = 60, ValSplit = 0.1, 
                              Dropout_layer_1 = 0.6, Dropout_layer_2 = 0.3, Dropout_layer_3 = 0.3, 
                              Filter = 48, Kernel_size = 5, Pool_size = 4, Units_lstm = 128, 
