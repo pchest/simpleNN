@@ -84,7 +84,7 @@ nn_embedded_lstm_cnn<- function(Text, Codes,
     validation_split = ValSplit
   )
   
-  net_time <- as.numeric(Sys.time() - start_time)
+  net_time <- as.numeric(difftime(Sys.time(), start_time,units = "sec"))
   
   score <- model %>% evaluate(
     txt_test, test_y,
