@@ -60,6 +60,8 @@ nn_embedded_lstm_cnn<- function(Text, Codes,
   train_y <- to_categorical(as.numeric(con_train_y), num_classes = classes)
   test_y <- to_categorical(as.numeric(con_test_y), num_classes = classes)
   
+  start_time <- Sys.time()
+  
   model <- keras_model_sequential() 
   model %>%
       layer_embedding(input_dim = Words, output_dim = WordEmbedDim, input_length = MaxSentencelen) %>%
@@ -68,7 +70,6 @@ nn_embedded_lstm_cnn<- function(Text, Codes,
       layer_max_pooling_1d(pool_size = Pool_size) %>% 
       layer_lstm(units = Units_lstm, dropout = Dropout_layer_2, recurrent_dropout = Dropout_layer_3) %>% 
       layer_dense(units = classes, activation = 'sigmoid')
-
   model %>% compile(
     loss = Loss,
     optimizer = 'adam',
@@ -82,11 +83,15 @@ nn_embedded_lstm_cnn<- function(Text, Codes,
     verbose = 1,
     validation_split = ValSplit
   )
+  
+  net_time <- as.numeric(start_time - Sys.time())
+  
   score <- model %>% evaluate(
     txt_test, test_y,
     batch_size = Batch,
     verbose = 1
   )
+
   if(CM == TRUE){
       pred_class <- predict_classes(model, txt_test, batch_size = Batch)
       score$ConMat <- caret::confusionMatrix(factor(pred_class,
@@ -95,7 +100,12 @@ nn_embedded_lstm_cnn<- function(Text, Codes,
                                              factor(con_test_y,
                                                     labels = levels(as.factor(Codes)), 
                                                     levels = 1:length(unique(Codes))))
-  } 
+  }
+  
+  score$TrueY <- con_test_y
+  score$PredY <- pred_class
+  score$Mtime <- net_time
+  
   if(Model == TRUE){
       score$Model <- model
   }

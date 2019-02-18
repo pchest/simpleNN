@@ -57,6 +57,9 @@ nn_twolayer <- function(Text, Codes,
     
   train_y <- to_categorical(as.numeric(con_train_y), num_classes = classes)
   test_y <- to_categorical(as.numeric(con_test_y), num_classes = classes)
+  
+  start_time <- Sys.time()
+  
   model <- keras_model_sequential() 
   model %>%
     layer_dense(units = Units, input_shape = Words) %>% 
@@ -78,6 +81,9 @@ nn_twolayer <- function(Text, Codes,
     verbose = 1,
     validation_split = Valsplit
   )
+  
+  net_time <- as.numeric(start_time - Sys.time())
+  
   score <- model %>% evaluate(
     txt_test, test_y,
     batch_size = Batch,
@@ -92,6 +98,11 @@ nn_twolayer <- function(Text, Codes,
                                                   labels = levels(as.factor(Codes)), 
                                                   levels = 1:length(unique(Codes))))
   } 
+  
+  score$TrueY <- con_test_y
+  score$PredY <- pred_class
+  score$Mtime <- net_time
+  
   if(Model == TRUE) {
     score$Model <- model
   }
