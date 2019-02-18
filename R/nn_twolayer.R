@@ -82,7 +82,7 @@ nn_twolayer <- function(Text, Codes,
     validation_split = Valsplit
   )
   
-  net_time <- as.numeric(start_time - Sys.time())
+  net_time <- as.numeric(Sys.time() - start_time)
   
   score <- model %>% evaluate(
     txt_test, test_y,
