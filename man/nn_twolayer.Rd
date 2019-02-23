@@ -8,7 +8,7 @@ nn_twolayer(Text, Codes, Words = 10000, Seed = 17,
   Weighting = "count", Train_prop = 0.5, Epochs = 3, Units = 512,
   Batch = 32, Dropout = 0.2, Valsplit = 0.1,
   Metric = "binary_accuracy", Loss = "binary_crossentropy",
-  CM = TRUE, Model = FALSE)
+  Optimizer = "adam", CM = TRUE, Model = FALSE)
 }
 \arguments{
 \item{Text}{The text that will be used as training and test data.}
@@ -34,6 +34,8 @@ nn_twolayer(Text, Codes, Words = 10000, Seed = 17,
 \item{Metric}{Metric used to train algorithm}
 
 \item{Loss}{Metric used to train algorithm}
+
+\item{Optimizer}{Optimizer used to fit model to training data}
 
 \item{CM}{A logical variable that indicates whether a confusion matrix will be output from the function}
 

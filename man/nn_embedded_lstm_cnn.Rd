@@ -10,7 +10,7 @@ nn_embedded_lstm_cnn(Text, Codes, Words = 7000, Seed = 17,
   Dropout_layer_2 = 0.3, Dropout_layer_3 = 0.3, Filter = 48,
   Kernel_size = 5, Pool_size = 4, Units_lstm = 128,
   Metric = "binary_accuracy", Loss = "binary_crossentropy",
-  CM = TRUE, Model = FALSE)
+  Optimizer = "adam", CM = TRUE, Model = FALSE)
 }
 \arguments{
 \item{Text}{The text that will be used as training and test data.}
@@ -50,6 +50,8 @@ nn_embedded_lstm_cnn(Text, Codes, Words = 7000, Seed = 17,
 \item{Metric}{Metric used to train algorithm}
 
 \item{Loss}{Metric used to train algorithm}
+
+\item{Optimizer}{Optimizer used to fit model to training data}
 
 \item{CM}{A logical variable that indicates whether a confusion matrix will be output from the function}
 

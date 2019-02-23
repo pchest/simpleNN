@@ -14,6 +14,7 @@
 #' @param ValSplit The validation split of the data used in the training of the LSTM model
 #' @param Metric Metric used to train algorithm
 #' @param Loss Metric used to train algorithm
+#' @param Optimizer Optimizer used to fit model to training data
 #' @param CM A logical variable that indicates whether a confusion matrix will be output from the function
 #' @param Model A logical variable that indicates whether the trained model should be included in the output of this function
 #' @keywords neural networks
@@ -22,7 +23,7 @@
 nn_twolayer <- function(Text, Codes, 
                         Words = 10000, Seed = 17, Weighting = "count", Train_prop = .5, 
                         Epochs = 3, Units = 512, Batch = 32, Dropout = .2, Valsplit = .1,
-                        Metric = "binary_accuracy",Loss = "binary_crossentropy", 
+                        Metric = "binary_accuracy",Loss = "binary_crossentropy", Optimizer = "adam",
                         CM = TRUE, Model = FALSE){
   set.seed(Seed)
   require(caret)
@@ -70,7 +71,7 @@ nn_twolayer <- function(Text, Codes,
   
   model %>% compile(
     loss = Loss,
-    optimizer = 'adam',
+    optimizer = Optimizer,
     metrics = Metric
   )
   

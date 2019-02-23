@@ -21,6 +21,7 @@
 #' @param Units_lstm The number of network nodes used in the LSTM layer
 #' @param Metric Metric used to train algorithm
 #' @param Loss Metric used to train algorithm
+#' @param Optimizer Optimizer used to fit model to training data
 #' @param CM A logical variable that indicates whether a confusion matrix will be output from the function
 #' @param Model A logical variable that indicates whether the trained model should be included in the output of this function
 #' @keywords neural networks, LSTM
@@ -31,7 +32,7 @@ nn_embedded_lstm_cnn<- function(Text, Codes,
                              Epochs = 4, Batch = 64, MaxSentencelen = 40, WordEmbedDim = 60, ValSplit = 0.1, 
                              Dropout_layer_1 = 0.6, Dropout_layer_2 = 0.3, Dropout_layer_3 = 0.3, 
                              Filter = 48, Kernel_size = 5, Pool_size = 4, Units_lstm = 128, 
-                             Metric = "binary_accuracy",Loss = "binary_crossentropy", 
+                             Metric = "binary_accuracy",Loss = "binary_crossentropy", Optimizer = "adam",
                              CM = TRUE, Model = FALSE) {
   
 #  if(Sparse == TRUE) {
@@ -72,7 +73,7 @@ nn_embedded_lstm_cnn<- function(Text, Codes,
       layer_dense(units = classes, activation = 'sigmoid')
   model %>% compile(
     loss = Loss,
-    optimizer = 'adam',
+    optimizer = Optimizer,
     metrics = Metric
   )
   
