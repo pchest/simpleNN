@@ -102,11 +102,10 @@ nn_embedded_lstm_cnn<- function(Text, Codes,
                                                     labels = levels(as.factor(Codes)), 
                                                     levels = 1:length(unique(Codes))))
   }
-  
-  score$TrueY <- con_test_y
-  score$PredY <- pred_class
+  score$test_df <- data.frame(Test_index = setdiff(1:length(Text), train_index),
+                              TrueY = con_test_y,
+                              PredY = pred_class)
   score$Mtime <- net_time
-  
   if(Model == TRUE){
       score$Model <- model
   }
